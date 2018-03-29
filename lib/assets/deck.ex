@@ -3,18 +3,18 @@ defmodule Assets.Deck do
 
   require Assets.Deck.Card
 
-  defstruct [:deck]
+  defstruct [:cards]
 
   def new(wildcards \\ 2, ranks \\ :all, suits \\ :all, copies \\ 1)
       when (is_integer(wildcards) and wildcards >= 0) and
            (is_list(suits) or suits == :all or suits == :empty) and
            (is_list(ranks) or ranks == :all or suits == :empty) and
            (is_integer(copies) and copies >= 0) do
-    %__MODULE__{deck: add_copies(wildcards, fix_ranks(ranks), fix_suits(suits), copies)}
+    %__MODULE__{cards: add_copies(wildcards, fix_ranks(ranks), fix_suits(suits), copies)}
   end
 
-  def shuffle(%__MODULE__{deck: deck}) do
-    %__MODULE__{deck: Enum.shuffle(deck)}
+  def shuffle(%__MODULE__{cards: cards}) do
+    %__MODULE__{cards: Enum.shuffle(cards)}
   end
 
   defp fix_suits(:all) do
