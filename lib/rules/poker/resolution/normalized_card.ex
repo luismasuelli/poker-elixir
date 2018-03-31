@@ -4,9 +4,10 @@ defmodule Rules.Poker.Resolution.NormalizedCard do
     may be zero, depending on the game being played and the required computations.
 
   The process of normalization depends on the game. Examples:
-    - Regular games normalize subtracting 2 to the rank.
-    - "Lo" games normalize A to 0, and other ranks subtracting 1.
-"""
+    - :ace_high: Regular games normalize subtracting 2 to the rank.
+    - :ace_low: "Lo" games normalize A to 0, and other ranks subtracting 1.
+    Both cases need to consider the whole rank (including, or not, wildcards).
+  """
 
   require Assets.Deck.Card
   alias Assets.Deck
