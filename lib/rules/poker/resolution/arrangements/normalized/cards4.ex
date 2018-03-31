@@ -6,6 +6,9 @@ defmodule Rules.Poker.Resolution.Arrangements.Normalized.Cards4 do
 
   A normalized arrangement involves 4 normalized cards of the same
     type of normalization.
+
+  Notes: Currently supported normalization types hold for full-rank
+    decks only.
   """
 
   alias Assets.Deck
