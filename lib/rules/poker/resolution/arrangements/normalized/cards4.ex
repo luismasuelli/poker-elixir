@@ -4,6 +4,8 @@ defmodule Rules.Poker.Resolution.Arrangements.Normalized.Cards4 do
   These games involve simple comparisons like card power, and no
     complex combinations beyond equal cards.
 
+  Cards will be sorted descendingly acording to rank.
+
   A normalized arrangement involves 4 normalized cards of the same
     type of normalization.
 
@@ -23,18 +25,23 @@ defmodule Rules.Poker.Resolution.Arrangements.Normalized.Cards4 do
                   %Card{} = card1, %Card{} = card2,
                   %Card{} = card3, %Card{} = card4
                 }}) do
-    new({
+    new([
       NormalizedCard.normalize(normalization_type, deck, card1),
       NormalizedCard.normalize(normalization_type, deck, card2),
       NormalizedCard.normalize(normalization_type, deck, card3),
       NormalizedCard.normalize(normalization_type, deck, card4)
-    })
+    ])
   end
 
-  defp new({%NormalizedCard{normalization_type: ntype},
+  defp new([%NormalizedCard{normalization_type: ntype},
             %NormalizedCard{normalization_type: ntype},
             %NormalizedCard{normalization_type: ntype},
-            %NormalizedCard{normalization_type: ntype}} = cards) do
-    %__MODULE__{normalization_type: ntype, cards: cards}
+            %NormalizedCard{normalization_type: ntype}] = cards) do
+    %__MODULE__{normalization_type: ntype, cards: sort(cards)}
+  end
+
+  defp sort(cards) do
+    [card1, card2, card3, card4] = cards |> Enum.sort_by(&(-&1.strength))
+    {card1, card2, card3, card4}
   end
 end

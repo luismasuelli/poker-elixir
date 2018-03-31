@@ -4,6 +4,8 @@ defmodule Rules.Poker.Resolution.Arrangements.Normalized.Cards2 do
   These games involve simple comparisons like card power, or at much
     finding pairs.
 
+  Cards will be sorted descendingly acording to rank.
+
   A normalized arrangement involves 2 normalized cards of the same
     type of normalization.
 
@@ -28,8 +30,18 @@ defmodule Rules.Poker.Resolution.Arrangements.Normalized.Cards2 do
     })
   end
 
-  defp new({%NormalizedCard{normalization_type: ntype},
-            %NormalizedCard{normalization_type: ntype}} = cards) do
-    %__MODULE__{normalization_type: ntype, cards: cards}
+  defp new({%NormalizedCard{normalization_type: ntype} = card1,
+            %NormalizedCard{normalization_type: ntype} = card2}) do
+    %__MODULE__{normalization_type: ntype, cards: sort(card1, card2)}
+  end
+
+  defp sort(%NormalizedCard{strength: s1} = card1,
+            %NormalizedCard{strength: s2} = card2) when s2 > s1 do
+    {card2, card1}
+  end
+
+  defp sort(%NormalizedCard{strength: s1} = card1,
+            %NormalizedCard{strength: s2} = card2)do
+    {card1, card2}
   end
 end
