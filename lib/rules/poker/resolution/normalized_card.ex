@@ -9,24 +9,24 @@ defmodule Rules.Poker.Resolution.NormalizedCard do
 """
 
   require Assets.Deck.Card
-  defstruct [:suit, :strength]
+  defstruct [:normalization_type, :suit, :strength]
 
   def normalize(:ace_high, %Assets.Deck{ranks: Assets.Deck.Card.ranks} = deck,
                            %Assets.Deck.Card{suit: suit, rank: rank}) do
-    new(suit, rank - 2)
+    new(:ace_high, suit, rank - 2)
   end
 
   def normalize(:ace_low, %Assets.Deck{ranks: Assets.Deck.Card.ranks} = deck,
                           %Assets.Deck.Card{suit: suit, rank: 14}) do
-    new(suit, 0)
+    new(:ace_low, suit, 0)
   end
 
   def normalize(:ace_low, %Assets.Deck{ranks: Assets.Deck.Card.ranks} = deck,
                           %Assets.Deck.Card{suit: suit, rank: rank}) do
-    new(suit, rank - 1)
+    new(:ace_low, suit, rank - 1)
   end
 
-  defp new(suit, strength) do
-    %__MODULE__{suit: suit, strength: strength}
+  defp new(type, suit, strength) do
+    %__MODULE__{normalization_type: type, suit: suit, strength: strength}
   end
 end
