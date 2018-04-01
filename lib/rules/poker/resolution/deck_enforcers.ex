@@ -12,5 +12,4 @@ defmodule Rules.Poker.Resolution.DeckEnforcers do
       raise ArgumentError, message: "An invalid deck was given"
     end
   end
-
 end
