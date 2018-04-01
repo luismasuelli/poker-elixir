@@ -15,11 +15,11 @@ defmodule Rules.Poker.Resolution.DeliveredHands.Cards7Hand do
     algorithms will not be discussed here.
   """
 
-  alias Rules.Poker.Resolution.DeliveredHands.HandUtils
+  import Rules.Poker.Resolution.DeliveredHands.HandUtils
 
   defstruct [:cards7]
 
   def new([_, _, _, _, _, _, _] = cards7) do
-    %__MODULE__{cards7: HandUtils.sort(cards7)}
+    %__MODULE__{cards7: sort(cards7)}
   end
 end

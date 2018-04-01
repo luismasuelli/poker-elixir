@@ -12,11 +12,11 @@ defmodule Rules.Poker.Resolution.DeliveredHands.Cards4Hand do
     algorithms will not be discussed here.
   """
 
-  alias Rules.Poker.Resolution.DeliveredHands.HandUtils
+  import Rules.Poker.Resolution.DeliveredHands.HandUtils
 
   defstruct [:cards4]
 
   def new([_, _, _, _] = cards4) do
-    %__MODULE__{cards4: HandUtils.sort(cards4)}
+    %__MODULE__{cards4: sort(cards4)}
   end
 end
