@@ -6,13 +6,12 @@ defmodule Rules.Poker.Resolution.HandDeliverers.BadugiDeliverer do
 
   alias Rules.Poker.Resolution.HandDeliverers.Base
   alias Rules.Poker.Resolution.DeliveredHands.Cards4Hand
-  alias Rules.Poker.Resolution.Reducers
 
   @behaviour Base
 
   def table_digest(_, _), do: nil
-  def deliver(reducer, %{cards: {c1, c2, c3, c4}}, _) do
-    cards = Enum.map([c1, c2, c3, c4], &(Reducers.reduce(reducer, &1)))
+  def deliver(reducer_func, %{cards: {c1, c2, c3, c4}}, _) do
+    cards = Enum.map([c1, c2, c3, c4], reducer_func)
     Cards4Hand.new(cards)
   end
 end

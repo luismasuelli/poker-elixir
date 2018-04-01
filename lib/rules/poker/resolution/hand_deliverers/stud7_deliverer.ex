@@ -11,21 +11,21 @@ defmodule Rules.Poker.Resolution.HandDeliverers.Stud7Deliverer do
 
   @behaviour Base
 
-  def table_digest(reducer, %{community: nil}) do
+  def table_digest(_, %{community: nil}) do
     nil
   end
 
-  def table_digest(reducer, %{community: c1}) do
-    Reducers.reduce(reducer, &1)
+  def table_digest(reducer_func, %{community: c1}) do
+    reducer_func.(c1)
   end
 
-  def deliver(reducer, %{cards: {c1, c2, c3, c4, c5, c6, c7}}, nil) do
-    [c1, c2, c3, c4, c5, c6, c7] = Enum.map([c1, c2, c3, c4, c5, c6, c7], &(Reducers.reduce(reducer, &1)))
+  def deliver(reducer_func, %{cards: {c1, c2, c3, c4, c5, c6, c7}}, nil) do
+    [c1, c2, c3, c4, c5, c6, c7] = Enum.map([c1, c2, c3, c4, c5, c6, c7], reducer_func)
     Cards7Hand.new([c1, c2, c3, c4, c5, c6, c7])
   end
 
-  def deliver(reducer, %{cards: {c1, c2, c3, c4, c5, c6, nil}}, c7) do
-    [c1, c2, c3, c4, c5, c6] = Enum.map([c1, c2, c3, c4, c5, c6], &(Reducers.reduce(reducer, &1)))
+  def deliver(reducer_func, %{cards: {c1, c2, c3, c4, c5, c6, nil}}, c7) do
+    [c1, c2, c3, c4, c5, c6] = Enum.map([c1, c2, c3, c4, c5, c6], reducer_func)
     Cards7Hand.new([c1, c2, c3, c4, c5, c6, c7])
   end
 end

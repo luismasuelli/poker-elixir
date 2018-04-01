@@ -28,6 +28,6 @@ defmodule Rules.Poker.Resolution.HandDeliverers.Base do
     Badugi    : 4          -> Nothing        -> Cards4
   """
 
-  @callback table_digest(reducer, table_state)
-  @callback deliver(reducer, user_state, table_digest)
+  @callback table_digest(reducer_func, table_state)
+  @callback deliver(reducer_func, user_state, table_digest)
 end
