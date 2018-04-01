@@ -29,7 +29,7 @@ defmodule Assets.Deck do
   end
 
   defp fix_suits(suits) do
-    suits
+    Enum.sort(suits)
   end
 
   defp fix_ranks(:all) do
@@ -41,7 +41,7 @@ defmodule Assets.Deck do
   end
 
   defp fix_ranks(ranks) do
-    ranks
+    Enum.sort(ranks)
   end
 
   defp add_copies(wildcards, ranks, suits, copies) do
