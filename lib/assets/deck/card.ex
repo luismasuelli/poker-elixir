@@ -5,7 +5,7 @@ defmodule Assets.Deck.Card do
 
   defmacro suits do
     quote do
-      [:spades, :diamonds, :hearts, :clubs]
+      [:clubs, :diamonds, :hearts, :spades]
     end
   end
 
