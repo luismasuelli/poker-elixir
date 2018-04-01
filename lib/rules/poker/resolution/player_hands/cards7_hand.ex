@@ -1,7 +1,8 @@
 defmodule Rules.Poker.Resolution.PlayerHands.Cards7Hand do
   @moduledoc """
   A 7-cards hand. Examples:
-  - Stud.
+  - Stud (when less than 8 players are active when the
+      showdown occurs).
   """
 
   alias __MODULE__, H
