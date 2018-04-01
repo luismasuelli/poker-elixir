@@ -4,6 +4,7 @@ defmodule Rules.Poker.Resolution.DeckEnforcers.Standard52 do
     4 suits, 1 copy, and no wildcards.
   """
 
+  require Assets.Deck.Card
   alias Rules.Poker.Resolution.DeckEnforcers.Base
   alias Assets.Deck
   alias Assets.Deck.Card
