@@ -7,5 +7,5 @@ defmodule Rules.Poker.Resolution.Comparers.Base do
   The returned values will be :win, :tie, or :lose.
   """
 
-  @callback compare(new, old)
+  @callback compare(new, current)
 end

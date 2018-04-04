@@ -11,7 +11,11 @@ defmodule Rules.Poker.Resolution.Comparers.Low do
 
   @behaviour Base
 
-  def compare(new, current) when new > current, do: :lose
-  def compare(new, current) when new == current, do: :tie
-  def compare(new, current), do: :win
+  def compare(new, current) do
+    case new <~> current do
+      (-1) -> :win
+        0  -> :tie
+        1  -> :lose
+    end
+  end
 end

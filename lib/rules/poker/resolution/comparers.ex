@@ -10,11 +10,11 @@ defmodule Rules.Poker.Resolution.Comparers do
       showdown status.
   """
 
-  def start_comparison(), do: %{strength: nil, spec: nil, winners: []}
+  def start_comparison(), do: %{spec: nil, winners: []}
 
-  def compare(module, player, strength, spec, state) do
-    case module.compare(strength, state.strength) do
-      :win -> {:win, %{ state | strength: strength, winners: [player]}}
+  def compare(module, player, spec, state) do
+    case module.compare(spec, state.spec) do
+      :win -> {:win, %{ state | spec: spec, winners: [player]}}
       :tie -> {:tie, %{ state | winners: [player | state.winners]}}
       :lose -> {:lose, state}
     end
