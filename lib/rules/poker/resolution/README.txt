@@ -1,15 +1,22 @@
+A poker hand preparing will start like this:
+
+  dp_module : determines what deck we should pick.
+
+  1. Picking the deck.
+     Running: Rules.Poker.Mechanics.DeckPickers.pick(dp_module, pid).
+     This will be run before any deal. The `pid` belongs to an actor
+       that stores and provides the deck to avoid generating it for
+       each time/hand.
+
+  gm_module : determines what mechanics the game will run.
+
+  2. Playing the round.
+
+  # TODO this deserves a special attention and will be quite
+  # TODO   complex since this one will be the actual big part
+  # TODO   of the game.
+
 A poker showdown will go like this:
-
-  df_module : determines what deck we should enforce
-
-  0. Obtaining a new shuffled deck.
-  1. Enforcing the deck.
-     Running: Rules.Poker.Resolution.DeckEnforcers.enforce(df_module, deck).
-     When the round starts to allow the game.
-
-  # TODO - ¿perhaps instead of requiring it, directly fetching it (new, shuffled)?
-
-  2. Playing. Reaching a showdown.
 
   3. Opening N possible contexts, in terms of priorities (e.g. Hi/Lo, Back/Front).
      Each context will run as follows:
