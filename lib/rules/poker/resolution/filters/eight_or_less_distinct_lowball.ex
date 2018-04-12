@@ -5,13 +5,18 @@ defmodule Rules.Poker.Resolution.Filters.EightOrLessDistinctLowball do
   """
 
   alias Rules.Poker.Resolution.Filters.Base
+  alias Rules.Poker.Resolution.Scores.Result
 
   @behaviour Base
 
-  def passes(%{cards: [%{rank: r1}, %{rank: r2}, %{rank: r3}, %{rank: r4}, %{rank: r5}]}) do
+  def passes(%Result{cmp_data: {_, {r1, _, _, _, _}}, category: :bust}) do
     # It is assumed to be ordered in descendant way.
     # Also, the first (highest) card must be at most 8
     #   in ace-low modes (its reduced value is 7).
-    r1 > r2 and r2 > r3 and r3 > r4 and r4 > r5 and r1 <= 7
+    r1 <= 7
+  end
+
+  def passes(_) do
+    false
   end
 end

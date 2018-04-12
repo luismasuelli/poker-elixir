@@ -6,9 +6,8 @@ defmodule Rules.Poker.Resolution.Scores.Result do
     - The hand type.
     - The involved hand values, if type is the
         same.
-    - Extra data to resolve the odd chips (e.g.
-        the suits of the main ranks) and perhaps
-        provide reminder or visual data.
+    - The hand category, for filters and custom
+        logic and display.
 
   The main disadvantage is that we lose the ability
     to compute percentage or absolute values here.
@@ -17,10 +16,10 @@ defmodule Rules.Poker.Resolution.Scores.Result do
     easy by the lexical check of lists.
   """
 
-  defstruct [:cmp_data, :extra]
+  defstruct [:cmp_data, :category]
 
-  def new(type, ranks, extra) do
-    %__MODULE__{cmp_data: {type, ranks}, extra: extra}
+  def new(type, ranks, category) do
+    %__MODULE__{cmp_data: {type, ranks}, category: category}
   end
 
   def %__MODULE__{cmp_data: c1} <~> %__MODULE__{cmp_data: c2} do

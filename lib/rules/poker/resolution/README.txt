@@ -44,9 +44,6 @@ A poker showdown will go like this:
   C3. The hand will be filtered to see whether it qualifies (e.g. bust8< in Lo
         context). The context will be halted if there are no qualifying hands.
 
-  # TODO fix those filters to make them according to the score, instead of
-  # TODO   the hand.
-
       cm_module : determines if the comparison will be high or low.
         this determines whether a higher score wins (Hold'Em, regular Draw,
         Hi games, and the current implementation of Badugi) or loses (Lo
