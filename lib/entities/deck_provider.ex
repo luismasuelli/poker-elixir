@@ -1,5 +1,8 @@
 defmodule Entities.DeckProvider do
-  @moduledoc false
+  @moduledoc """
+  This process provides a deck when needed.
+    You can get it either shuffled or not.
+  """
 
   use GenServer
 
