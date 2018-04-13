@@ -1,6 +1,6 @@
-defmodule Rules.Poker.Mechanics.PlayerGamePlayStatus do
+defmodule Rules.Poker.Mechanics.SeatedPlayer do
   @moduledoc """
-  A PGP status is just a data structure defining
+  A SP status is just a data structure defining
     the following details regarding their play in
     this turn:
     - status: :active, :all_in, :away, :folded.
